@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DecoPlants</title>
+    <style>
+        /* CSS Internal */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f9f4;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #4CAF50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .navbar-menu {
+            display: flex;
+            gap: 15px;
+        }
+        .navbar-menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navbar-menu a:hover {
+            background-color: #45a049;
+        }
+
+        /* Struktur Halaman */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #4CAF50;
+            padding: px;
+        }
+        .header p {
+            font-size: 16px;
+            color: #666;
+            padding: 10px;
+        }
+
+        /* Kartu Tanaman */
+        .plant-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .plant-card {
+            flex: 1 1 calc(25% - 20px);
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .plant-card:hover {
+            transform: translateY(-5px);
+        }
+        .plant-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .plant-card h3 {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0 5px;
+        }
+        .plant-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+       /* Formulir CRUD */
+       .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        .form-group button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+/* Styling Kategori Tanaman */
+.kategori-tanaman {
+    margin-bottom: 2em;
+}
+
+.kategori-tanaman h2 {
+    color: #5d8a82;
+    border-bottom: 2px solid #d1e0d4;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+}
+
+/* Styling Kartu Tanaman */
+.tanaman-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    margin-bottom: 1em;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tanaman-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tanaman-card h3 {
+    color: #4a7c59;
+    margin-bottom: 0.5em;
+    font-size: 1.3em;
+}
+
+.tanaman-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .navbar-menu {
+        flex-direction: column;
+    }
+
+    .navbar-menu a {
+        margin: 0.5em 0;
+    }
+
+    .tanaman-card {
+        padding: 1em;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>DecoPlants</h1>
+        <div class="navbar-menu">
+            <a href="#beranda">Beranda</a>
+            <a href="#tanaman">Tanaman</a>
+            <a href="#kategori">Kategori Tanaman</a>
+            <a href="#pengaturan">Pengaturan</a>
+        </div>
+    </div>
+    
+    <!-- Konten Halaman -->
+    <div class="container" id="beranda">
+                <div class="navbar-menu">
+            <a href="#beranda">Beranda</a>
+            <a href="#tanaman">Tanaman</a>
+            <a href="#kategori">Kategori Tanaman</a>
+            <a href="#pengaturan">Pengaturan</a>
+        </div>
+        <div class="header">
+            <h1>Beranda</h1>
+            
+            <p>Selamat datang di DecoPlants! Di sini Anda dapat melihat tanaman favorit dan mengelola koleksi tanaman Anda.</p>
+        </div>
+
+        <!-- Daftar Tanaman Favorit -->
+        <div class="plant-list">
+            <div class="plant-card">
+                <h3>Monstera</h3>
+                <p>Perawatan terakhir: 2 hari lalu</p>
+            </div>
+            <div class="plant-card">
+                <h3>Lili Paris</h3>
+                <p>Perawatan terakhir: 1 minggu lalu</p>
+            </div>
+            <div class="plant-card">
+                <h3>Anggrek</h3>
+                <p>Perawatan terakhir: 3 hari lalu</p>
+            </div>
+            <div class="plant-card">
+                <h3>Lidah Mertua</h3>
+                <p>Perawatan terakhir: 4 hari lalu</p>
+            </div>
+            <div class="plant-card">
+                <h3>Palem Kuning</h3>
+                <p>Perawatan terakhir: 2 hari lalu</p>
+            </div>
+            <div class="plant-card">
+                <h3>Mawar</h3>
+                <p>Perawatan terakhir: 5 hari lalu</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman Tanaman -->
+    <div class="container" id="tanaman">
+        <div class="navbar-menu">
+    <a href="#beranda">Beranda</a>
+    <a href="#tanaman">Tanaman</a>
+    <a href="#kategori">Kategori Tanaman</a>
+    <a href="#pengaturan">Pengaturan</a>
+</div>
+    <div class="container" id="tanaman">
+        <div class="header">
+            <h1>Tanaman</h1>
+            <p>Kelola koleksi tanaman Anda. Tambah, edit, atau hapus tanaman.</p>
+        </div>
+
+       <!-- Form CRUD -->
+       <div class="form-group">
+        <label for="plantName">Nama Tanaman</label>
+        <input type="text" id="plantName" placeholder="Masukkan nama tanaman...">
+    </div>
+    <div class="form-group">
+        <label for="plantType">Jenis Tanaman</label>
+        <select id="plantType">
+            <option>Pilih jenis tanaman</option>
+            <option>Indoor</option>
+            <option>Outdoor</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="lastWatered">Perawatan Terakhir</label>
+        <input type="date" id="lastWatered">
+    </div>
+    <div class="form-group">
+        <button type="button" id="savePlant">Simpan</button>
+    </div>
+</div>
+
+  <!-- Halaman Kategori Tanaman --> 
+<div class="container" id="kategori">
+    <div class="navbar-menu">
+        <a href="#beranda">Beranda</a>
+        <a href="#tanaman">Tanaman</a>
+        <a href="#kategori">Kategori Tanaman</a>
+        <a href="#pengaturan">Pengaturan</a>
+    </div>
+    <div class="container" id="kategori">
+        <div class="header">
+            <h1>Kategori Tanaman</h1>
+            <p>Kategori tanaman Anda berdasarkan jenis atau asal.</p>
+        </div>
+        
+        <!-- Kategori Tanaman Hias Bunga -->
+        <div class="kategori-tanaman">
+            <h2>Tanaman Hias Bunga</h2>
+            <div class="tanaman-card">
+                <h3>Mawar</h3>
+                <p>Mawar adalah tanaman hias bunga yang populer dengan beragam warna indah seperti merah, putih, dan kuning. Bunga ini melambangkan keindahan dan kasih sayang, serta sering digunakan dalam dekorasi taman dan perayaan.</p>
+            </div>
+            <div class="tanaman-card">
+                <h3>Anggrek</h3>
+                <p>Anggrek adalah tanaman bunga eksotis dengan variasi bentuk dan warna yang memukau. Bunga ini membutuhkan kondisi lembap dan cahaya yang cukup serta memiliki ketahanan tinggi dalam kondisi indoor.</p>
+            </div>
+        </div>
+
+        <!-- Kategori Tanaman Hias Daun -->
+        <div class="kategori-tanaman">
+            <h2>Tanaman Hias Daun</h2>
+            <div class="tanaman-card">
+                <h3>Monstera</h3>
+                <p>Monstera adalah tanaman dengan daun besar dan berlubang yang memberikan nuansa tropis. Tanaman ini populer sebagai dekorasi indoor karena mudah dirawat dan sangat estetis.</p>
+            </div>
+            <div class="tanaman-card">
+                <h3>Lili Paris</h3>
+                <p>Lili Paris atau Spider Plant memiliki daun panjang yang berwarna hijau dengan garis putih. Tanaman ini mudah dirawat dan mampu menyaring udara, cocok sebagai tanaman hias di dalam ruangan.</p>
+            </div>
+            <div class="tanaman-card">
+                <h3>Lidah Mertua</h3>
+                <p>Lidah mertua memiliki daun panjang dengan warna hijau kekuningan. Tanaman ini sangat tahan lama, mudah dirawat, dan dikenal sebagai tanaman yang dapat menyaring udara dengan baik.</p>
+            </div>
+            <div class="tanaman-card">
+                <h3>Palem Kuning</h3>
+                <p>Palem kuning adalah tanaman hias dengan batang dan daun berwarna hijau kekuningan yang cantik. Tanaman ini sangat cocok untuk ditanam di taman atau halaman rumah karena memberikan kesan tropis yang segar.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Halaman Pengaturan -->
+   <div class="container" id="pengaturan">
+        <div class="header">
+            <h1>Pengaturan</h1>
+            <p>Atur preferensi pengingat penyiraman dan pemupukan Anda.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="wateringReminder">Pengingat Penyiraman (hari)</label>
+            <input type="number" id="wateringReminder" min="1" placeholder="Masukkan jumlah hari">
+        </div>
+        <div class="form-group">
+            <label for="fertilizingReminder">Pengingat Pemupukan (bulan)</label>
+            <input type="number" id="fertilizingReminder" min="1" placeholder="Masukkan jumlah bulan">
+        </div>
+        <div class="form-group">
+            <button type="button" id="saveSettings">Simpan Pengaturan</button>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menyimpan tanaman
+        document.getElementById('savePlant').addEventListener('click', function() {
+            const plantName = document.getElementById('plantName').value;
+            const plantType = document.getElementById('plantType').value;
+            const lastWatered = document.getElementById('lastWatered').value;
+
+            if (plantName && plantType !== "Pilih jenis tanaman" && lastWatered) {
+                alert(`Tanaman berhasil disimpan!\nNama: ${plantName}\nJenis: ${plantType}\nPerawatan Terakhir: ${lastWatered}`);
+                // Reset form setelah menyimpan
+                document.getElementById('plantName').value = '';
+                document.getElementById('plantType').value = 'Pilih jenis tanaman';
+                document.getElementById('lastWatered').value = '';
+            } else {
+                alert('Harap lengkapi semua field.');
+            }
+        });
+
+        // Fungsi untuk menyimpan pengaturan
+        document.getElementById('saveSettings').addEventListener('click', function() {
+            const wateringReminder = document.getElementById('wateringReminder').value;
+            const fertilizingReminder = document.getElementById('fertilizingReminder').value;
+
+            if (wateringReminder && fertilizingReminder) {
+                alert(`Pengaturan berhasil disimpan!\nPengingat Penyiraman: ${wateringReminder} hari\nPengingat Pemupukan: ${fertilizingReminder} bulan`);
+                // Reset form setelah menyimpan
+                document.getElementById('wateringReminder').value = '';
+                document.getElementById('fertilizingReminder').value = '';
+            } else {
+                alert('Harap lengkapi semua field.');
+            }
+        });
+    </script>
+</body>
+</html>
